@@ -12,5 +12,5 @@ public class InitDataDto {
     private String username;
     private String firstname;
     private String lastname;
-    private List<String> authorities;
+    private String role;
 }

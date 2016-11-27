@@ -25,11 +25,12 @@ public class InitDataService implements InitDataServiceApi {
         idd.setFirstname(aud.getFirstName());
         idd.setLastname(aud.getLastName());
 
-        List<String> authorities = new ArrayList<>();
+        String role = "";
         for (GrantedAuthority s : aud.getAuthorities()) {
-            authorities.add(s.getAuthority());
+            role = s.getAuthority();
+            break; // narazie tak dziwnie ale wolnym czasem to zmienie. Dorabiam to na szybko na polecenie Dawida.
         }
-        idd.setAuthorities(authorities);
+        idd.setRole(role);
 
         return idd;
     }

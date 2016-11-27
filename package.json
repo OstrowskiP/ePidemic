@@ -1,0 +1,24 @@
+{
+  "name": "epidemic",
+  "version": "1.0.0",
+  "description": "epidemic",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdirp ./target/classes/static;webpack --config src/webapp/webpack.build.js  --display-error-details;"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.0.1",
+    "mkdirp": "^0.5.1",
+    "webpack": "^1.13.3",
+    "webpack-uglify-js-plugin": "^1.1.9"
+  }
+}

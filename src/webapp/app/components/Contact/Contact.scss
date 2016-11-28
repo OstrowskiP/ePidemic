@@ -1,0 +1,29 @@
+.contact-container {
+  background: url("~/resources/images/about-background.jpg") no-repeat;
+  background-size: auto 100%;
+  background-position: left;
+  min-height: calc(100vh - #{$footer-height} - #{$header-height});
+  position: relative;
+
+  .contact-form-container {
+    width: 400px;
+    position: relative;
+    right: 125px;
+    float: right;
+    height: calc(100vh - #{$footer-height} - #{$header-height});
+
+    .contact-title {
+      position: absolute;
+      top: 140px;
+      font-size: 30px;
+      font-style: italic;
+    }
+
+    .contact-form {
+      width: 400px;
+      top: calc(50% - 100px);
+      position: absolute;
+    }
+  }
+}
+

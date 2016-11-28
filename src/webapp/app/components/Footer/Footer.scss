@@ -1,0 +1,38 @@
+.footer {
+  background: $footer-color;
+  width: $max-content-width;
+  margin: auto;
+  color: #fff;
+}
+
+.footer-container {
+  margin: 0 auto;
+  padding: 20px 15px;
+  width: $max-content-width;
+  text-align: center;
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, .5);
+}
+
+.footer-spacer {
+  color: rgba(255, 255, 255, .3);
+}
+
+.footer-text,
+.footer-link {
+  padding: 2px 5px;
+  font-size: 1em;
+}
+
+.footer-link,
+.footer-link:active,
+.footer-link:visited {
+  color: rgba(255, 255, 255, .6);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: rgba(255, 255, 255, 1);
+}

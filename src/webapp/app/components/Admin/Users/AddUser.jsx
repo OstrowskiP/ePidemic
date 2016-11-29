@@ -1,7 +1,5 @@
 import { snackbarShow } from '../../Common/SnackBar/actions';
 import { usersClient } from '../../../core';
-
-import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';

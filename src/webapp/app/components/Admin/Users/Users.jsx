@@ -1,5 +1,4 @@
-import { usersGetAll, usersSelect, usersDeleteSelected } from './actions';
-import RaisedButton from 'material-ui/RaisedButton';
+import { usersGetAll, usersSelect } from './actions';
 import React, { Component } from 'react';
 import UsersList from './UsersList';
 import { connect } from 'react-redux';
@@ -13,12 +12,11 @@ class Users extends Component {
   }
 
   render() {
-    let { users, onDeleteButtonClicked, selectUsers} = this.props;
+    let { users, selectUsers} = this.props;
 
     return (
       <div>
         <UsersList users={ users } onRowSelection={ selectUsers }/>
-        <RaisedButton label="usuń" onClick={ onDeleteButtonClicked }/>
       </div>
     )
   }
@@ -38,10 +36,6 @@ const mapDispatchToProps = (dispatch) => {
 
     selectUsers: function (selectedUsers) {
       dispatch(usersSelect(selectedUsers));
-    },
-
-    onDeleteButtonClicked: function () {
-      dispatch(usersDeleteSelected());
     }
 
   }

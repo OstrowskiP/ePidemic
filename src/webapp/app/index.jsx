@@ -1,5 +1,6 @@
 import './main.scss';
 import Admin from './components/Admin/Admin';
+import AdminButtons from './components/Admin/AdminButtons';
 import App from './components/App';
 import configureStore from './store/configureStore';
 import Home from './components/Home/Home';
@@ -17,7 +18,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
 injectTapEventPlugin();
 
@@ -28,16 +29,17 @@ ReactDOM.render((
   <MuiThemeProvider muiTheme={ getMuiTheme() }>
     <Provider store={ store }>
       <Router history={ browserHistory }>
-        <Route component={ App }>
-          <Route path='/' component={ Home }/>
-          <Route path='/admin' component={ Admin }/>
-          <Route path='/users' component={ Users }/>
-          <Route path='/addUser' component={ AddUser }/>
-          <Route path='/login' component={ Login }/>
-          <Route path='/register' component={ Register }/>
-          <Route path='/map' component={ LeafletMap }/>
-          <Route path='/about' component={ About }/>
-          <Route path='/contact' component={ Contact }/>
+        <Route path='/' component={ App }>
+          <IndexRoute component={ Home }/>
+          <Route path='admin' component={ Admin }>
+            <IndexRoute component={ AdminButtons }/>
+            <Route path='addUser' component={ AddUser }/>
+          </Route>
+          <Route path='login' component={ Login }/>
+          <Route path='register' component={ Register }/>
+          <Route path='map' component={ LeafletMap }/>
+          <Route path='about' component={ About }/>
+          <Route path='contact' component={ Contact }/>
           <Route path='*' component={ PageNotFound }/>
         </Route>
       </Router>

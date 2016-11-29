@@ -6,6 +6,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
+import Paper from 'material-ui/Paper';
+
+const style = {
+  height: 'auto',
+  width: 'auto',
+  display: 'inline-block',
+  padding: 10,
+  margin: 10
+};
 
 class AddUser extends Component {
   render() {
@@ -16,7 +25,6 @@ class AddUser extends Component {
         name,
         surname,
         email,
-        isEnabled
       },
       handleSubmit,
       handleSubmitImpl
@@ -25,41 +33,38 @@ class AddUser extends Component {
     const onSubmit = handleSubmit(handleSubmitImpl);
 
     return (
-      <form className='login-form' onSubmit={ onSubmit }>
-        <TextField
-          { ...username }
-          hintText='Nazwa użytkownika'
-        /><br />
-        <TextField
-          { ...password }
-          hintText='Hasło'
-        /><br />
-        <TextField
-          { ...name }
-          hintText='Imię'
-        /><br />
-        <TextField
-          { ...surname }
-          hintText='Nazwisko'
-        /><br />
-        <TextField
-          { ...email }
-          hintText='E-Mail'
-        /><br />
-        <Checkbox
-          checked={isEnabled.value ? true : false}
-          onCheck={(e) => isEnabled.onChange(e)}
-          label="Aktywny"
-        /><br /><br />
-        <RaisedButton
-          label='Stwórz użytkownika'
-          primary={ true }
-          style={{
-            width: '256px'
-          }}
-          type='submit'
-        />
-      </form>
+      <Paper style={style} zDepth={1}>
+        <form className='login-form' onSubmit={ onSubmit }>
+          <TextField
+            { ...username }
+            hintText='Nazwa użytkownika'
+          /><br />
+          <TextField
+            { ...password }
+            hintText='Hasło'
+          /><br />
+          <TextField
+            { ...name }
+            hintText='Imię'
+          /><br />
+          <TextField
+            { ...surname }
+            hintText='Nazwisko'
+          /><br />
+          <TextField
+            { ...email }
+            hintText='E-Mail'
+          /><br />
+          <RaisedButton
+            label='Stwórz użytkownika'
+            primary={ true }
+            style={{
+              width: '256px'
+            }}
+            type='submit'
+          />
+        </form>
+      </Paper>
     );
   }
 }
@@ -90,6 +95,5 @@ export default reduxForm({
     'name',
     'surname',
     'email',
-    'isEnabled',
   ]
 }, mapStateToProps, mapDispatchToProps)(AddUser);

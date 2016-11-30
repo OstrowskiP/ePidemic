@@ -1,10 +1,9 @@
-import { snackbarShow } from '../../Common/SnackBar/actions';
-import { usersClient } from '../../../core';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
 import Paper from 'material-ui/Paper';
+import { userCreate } from './actions';
 
 const style = {
   height: 'auto',
@@ -74,14 +73,8 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmitImpl: (values) => {
-      usersClient.createUser(values)
-        .then(result => {
-          dispatch(snackbarShow(result.message));
-          dispatch(reset('adminCreateUserForm'));
-        }).catch(error => {
-        console.error(error)
-      })
-    }
+      dispatch(userCreate(values));
+    },
   }
 };
 

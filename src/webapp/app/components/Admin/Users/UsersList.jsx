@@ -12,10 +12,10 @@ class UsersList extends Component {
           onRowSelection={ this.props.onRowSelection }>
           <TableHeader displaySelectAll={ false }>
             <TableRow>
-              <TableHeaderColumn tooltip="ID">ID</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Username">Nazwa użytkownika</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Role">Rola</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Enabled">Aktywny</TableHeaderColumn>
+              <TableHeaderColumn>ID</TableHeaderColumn>
+              <TableHeaderColumn>Nazwa użytkownika</TableHeaderColumn>
+              <TableHeaderColumn>Rola</TableHeaderColumn>
+              <TableHeaderColumn>Aktywny</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
@@ -26,7 +26,7 @@ class UsersList extends Component {
                   <TableRowColumn>{ row._id }</TableRowColumn>
                   <TableRowColumn>{ row.username }</TableRowColumn>
                   <TableRowColumn>{ row.role }</TableRowColumn>
-                  <TableRowColumn>{ 'true' }</TableRowColumn>
+                  <TableRowColumn>{ row.active.toString() }</TableRowColumn>
                 </TableRow>
               ))
             }

@@ -1,4 +1,4 @@
-import { USERS_SET, USERS_SELECT } from './actions';
+import { USERS_SET, USERS_SELECT, USERS_SELECT_CLEAR } from './actions';
 
 const initialState = {
   users: [],
@@ -16,6 +16,11 @@ const users = (state = initialState, action) => {
     case USERS_SELECT:
       return Object.assign({}, state, {
         selectedUsers: action.users
+      });
+
+    case USERS_SELECT_CLEAR:
+      return Object.assign({}, state, {
+        selectedUsers: []
       });
 
     default:

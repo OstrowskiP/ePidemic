@@ -4,10 +4,11 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { usersDeleteSelected } from './Users/actions';
 import { getIsUserSelected } from './Users/selectors';
+import { usersActivateSelected } from './Users/actions';
 
 class AdminButtons extends Component {
   render() {
-    let { onDeleteButtonClicked, isUserSelected } = this.props;
+    let { onDeleteButtonClicked, onActivateButtonClicked, onDeactivateButtonClicked, isUserSelected } = this.props;
 
     return (
       <div>
@@ -15,8 +16,8 @@ class AdminButtons extends Component {
           <RaisedButton label="Nowy" className="admin-button"/>
         </Link>
         <RaisedButton label="Usuń" className="admin-button" onClick={ onDeleteButtonClicked } disabled={ isUserSelected }/>
-        <RaisedButton label="Aktywuj" className="admin-button" disabled={ isUserSelected }/>
-        <RaisedButton label="Dezaktywuj" className="admin-button" disabled={ isUserSelected }/>
+        <RaisedButton label="Aktywuj" className="admin-button" onClick={ onActivateButtonClicked } disabled={ isUserSelected }/>
+        <RaisedButton label="Dezaktywuj" className="admin-button" onClick={ onDeactivateButtonClicked } disabled={ isUserSelected }/>
       </div>
     )
   }
@@ -30,10 +31,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDeleteButtonClicked: function () {
+    onDeleteButtonClicked: () => {
       dispatch(usersDeleteSelected());
+    },
+    onActivateButtonClicked: () => {
+      dispatch(usersActivateSelected(true));
+    },
+    onDeactivateButtonClicked: () => {
+      dispatch(usersActivateSelected(false));
     }
-
   }
 };
 

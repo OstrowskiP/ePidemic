@@ -12,8 +12,9 @@ class UsersList extends Component {
           onRowSelection={ this.props.onRowSelection }>
           <TableHeader displaySelectAll={ false }>
             <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
+              <TableHeaderColumn style={{ width: 10 }}>Lp.</TableHeaderColumn>
               <TableHeaderColumn>Nazwa użytkownika</TableHeaderColumn>
+              <TableHeaderColumn>Imię i nazwisko</TableHeaderColumn>
               <TableHeaderColumn>Rola</TableHeaderColumn>
               <TableHeaderColumn>Aktywny</TableHeaderColumn>
             </TableRow>
@@ -23,8 +24,9 @@ class UsersList extends Component {
             {
               this.props.users.map((row, index) => (
                 <TableRow key={ index } selected={ row.selected }>
-                  <TableRowColumn>{ row._id }</TableRowColumn>
+                  <TableRowColumn style={{ width: 10 }}>{ index + 1 }</TableRowColumn>
                   <TableRowColumn>{ row.username }</TableRowColumn>
+                  <TableRowColumn>{ row.name + " " + row.surname }</TableRowColumn>
                   <TableRowColumn>{ row.role }</TableRowColumn>
                   <TableRowColumn>{ row.active.toString() }</TableRowColumn>
                 </TableRow>

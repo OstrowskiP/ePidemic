@@ -1,4 +1,7 @@
-import { logout } from '../Authentication/actions';
+import {
+  logout,
+  authenticate
+} from '../Authentication/actions';
 
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -17,6 +20,12 @@ class Home extends Component {
 
     if (isAuthenticated)
       browserHistory.push('/');
+  }
+
+  componentWillMount() {
+    let { authenticate } = this.props;
+
+    authenticate()
   }
 
   render() {
@@ -137,6 +146,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: function () {
       dispatch(logout());
+    },
+    authenticate: function () {
+      dispatch(authenticate());
     }
   }
 };

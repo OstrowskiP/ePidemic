@@ -1,4 +1,5 @@
 import { authenticationNodeClient } from '../../../core/index';
+import { login } from '../Login/actions';
 
 const registerErrorMessage = 'Failed to register: Please try again later';
 
@@ -12,11 +13,10 @@ export const registerRequest = () => {
   }
 };
 
-export const registerSuccess = (username, role) => {
+export const registerSuccess = (currentUser) => {
   return {
     type: REGISTER_SUCCESS,
-    username,
-    role
+    currentUser
   }
 };
 
@@ -32,11 +32,9 @@ export const register = (credentials) => {
     dispatch(registerRequest());
 
     authenticationNodeClient.register(credentials)
-      .then(({ userInfo }) => {
-        let { username, role } = userInfo;
-        localStorage.setItem('username', username);
-        localStorage.setItem('role', role);
-        dispatch(registerSuccess(username, role));
+      .then(() => {
+        dispatch(registerSuccess());
+        dispatch(login(credentials));
       })
       .catch((error) => dispatch(registerFailure(error)));
   }

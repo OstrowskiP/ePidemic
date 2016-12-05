@@ -1,4 +1,5 @@
 import { authenticationNodeClient } from '../../../core/index';
+import { authenticate } from '../actions';
 
 const loginErrorMessage = 'Failed to login: Incorrect username or password';
 
@@ -12,11 +13,9 @@ export const loginRequest = () => {
   }
 };
 
-export const loginSuccess = (username, role) => {
+export const loginSuccess = () => {
   return {
-    type: LOGIN_SUCCESS,
-    username,
-    role
+    type: LOGIN_SUCCESS
   }
 };
 
@@ -32,12 +31,9 @@ export const login = (credentials) => {
     dispatch(loginRequest());
 
     authenticationNodeClient.login(credentials)
-      .then(({ userInfo }) => {
-        let { username, role } = userInfo;
-
-        localStorage.setItem('username', username);
-        localStorage.setItem('role', role);
-        dispatch(loginSuccess(username, role));
+      .then(() => {
+        dispatch(loginSuccess());
+        dispatch(authenticate());
       })
       .catch(() => dispatch(loginFailure(loginErrorMessage)));
   }

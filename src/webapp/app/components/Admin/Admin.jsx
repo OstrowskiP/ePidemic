@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import Users from './Users/Users'
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
 class Admin extends Component {
   render() {
     return (
-      <div className="admin-buttons-container">
-        <Link to='/users'>
-          <RaisedButton label="Lista użytkowników" className="admin-button"/>
-        </Link>
-        <Link to='/addUser'>
-          <RaisedButton label="Stwórz użytkownika" className="admin-button"/>
-        </Link>
+      <div className="admin-container">
+        <div className="admin-left-col">
+          { this.props.children }
+        </div>
+        <div className="admin-right-col">
+          <Users />
+        </div>
       </div>
     )
   }

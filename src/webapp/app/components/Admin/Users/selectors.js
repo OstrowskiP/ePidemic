@@ -17,3 +17,13 @@ export const getSelectedUsers = createSelector(
 export const getIsUserSelected = state => {
   return _.isEmpty(state.admin.users.selectedUsers);
 };
+
+export const getIsSelectedUserActivated = createSelector(
+  getSelectedUsers,
+  (selectedUsers) => {
+    if (_.isEmpty(selectedUsers)) {
+      return false;
+    }
+    return _.every(selectedUsers, 'active');
+  }
+);

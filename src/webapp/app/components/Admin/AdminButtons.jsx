@@ -3,12 +3,18 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { usersDeleteSelected } from './Users/actions';
-import { getIsUserSelected } from './Users/selectors';
+import { getIsUserSelected, getIsSelectedUserActivated } from './Users/selectors';
 import { usersActivateSelected } from './Users/actions';
 
 class AdminButtons extends Component {
   render() {
-    let { onDeleteButtonClicked, onActivateButtonClicked, onDeactivateButtonClicked, isUserSelected } = this.props;
+    let {
+      onDeleteButtonClicked,
+      onActivateButtonClicked,
+      onDeactivateButtonClicked,
+      isUserSelected,
+      isSelectedUserActive
+    } = this.props;
 
     return (
       <div>
@@ -16,8 +22,8 @@ class AdminButtons extends Component {
           <RaisedButton label="Nowy" className="admin-button"/>
         </Link>
         <RaisedButton label="Usuń" className="admin-button" onClick={ onDeleteButtonClicked } disabled={ isUserSelected }/>
-        <RaisedButton label="Aktywuj" className="admin-button" onClick={ onActivateButtonClicked } disabled={ isUserSelected }/>
-        <RaisedButton label="Dezaktywuj" className="admin-button" onClick={ onDeactivateButtonClicked } disabled={ isUserSelected }/>
+        <RaisedButton label="Aktywuj" className="admin-button" onClick={ onActivateButtonClicked } disabled={ isUserSelected || isSelectedUserActive }/>
+        <RaisedButton label="Dezaktywuj" className="admin-button" onClick={ onDeactivateButtonClicked } disabled={ isUserSelected || !isSelectedUserActive }/>
       </div>
     )
   }
@@ -25,7 +31,8 @@ class AdminButtons extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isUserSelected: getIsUserSelected(state)
+    isUserSelected: getIsUserSelected(state),
+    isSelectedUserActive: getIsSelectedUserActivated(state)
   }
 };
 

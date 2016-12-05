@@ -7,12 +7,12 @@ import {
 import {
   REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE
 } from './Register/actions';
+import { AUTHENTICATION_SUCCESS } from './actions';
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: localStorage.getItem('username') && localStorage.getItem('role') ? true : false,
-  username: localStorage.getItem('username') ? localStorage.getItem('username')  : null,
-  role: localStorage.getItem('role') ? localStorage.getItem('role') : null,
+  isAuthenticated: false,
+  currentUser: null,
   errorMessage: ''
 };
 
@@ -23,18 +23,14 @@ const authentication = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false,
-        errorMessage: '',
-        username: null,
-        role: null
+        errorMessage: ''
       });
 
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: true,
-        errorMessage: '',
-        username: action.username,
-        role: action.role
+        isFetching: true,
+        isAuthenticated: false,
+        errorMessage: ''
       });
 
     case LOGIN_FAILURE:
@@ -42,50 +38,39 @@ const authentication = (state = initialState, action) => {
         isFetching: false,
         isAuthenticated: false,
         errorMessage: action.errorMessage,
-        username: null,
-        role: null
       });
 
     case LOGOUT_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: true,
-        username: null,
-        role: null
       });
 
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,
-        username: null,
-        role: null
+        currentUser: null
       });
 
     case LOGOUT_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        isAuthenticated: true,
-        username: null,
-        role: null
+        isAuthenticated: true
       });
 
     case REGISTER_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false,
-        errorMessage: '',
-        username: null,
-        role: null
+        errorMessage: ''
       });
 
     case REGISTER_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetching: true,
         isAuthenticated: true,
         errorMessage: '',
-        username: action.username,
-        role: action.role
       });
 
     case REGISTER_FAILURE:
@@ -93,13 +78,18 @@ const authentication = (state = initialState, action) => {
         isFetching: false,
         isAuthenticated: false,
         errorMessage: action.errorMessage,
-        username: null,
-        role: null
       });
 
     case CLEAR_ERROR:
       return Object.assign({}, state, {
         errorMessage: ''
+      });
+
+    case AUTHENTICATION_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+        currentUser: action.currentUser
       });
 
     default:

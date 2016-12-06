@@ -7,32 +7,50 @@ import {
   TileLayer,
 } from 'react-leaflet';
 const { Overlay } = LayersControl;
+import { connect } from 'react-redux';
+import { diseasesGetAll } from './actions';
+import { getDiseasesGroupedByName } from './selectors';
+import _ from 'lodash';
+import { getCenter } from './selectors';
 
 class LeafletMap extends Component {
   componentDidMount() {
     window.mapElement = this.refs.map.leafletElement;
   }
 
-  render() {
-    const center = [51.505, -0.09];
+  componentWillMount() {
+    let { retrieveDiseases } = this.props;
 
+    retrieveDiseases();
+  }
+
+  render() {
+    let { diseasesGroupedByName, center } = this.props;
+    let diseasesNames = _.keys(diseasesGroupedByName);
     return (
-      <Map ref='map' center={center} zoom={13}>
+      <Map ref='map' center={ center } zoom={14}>
         <TileLayer
           attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
         <LayersControl position='topright'>
-          <Overlay checked={this.shouldBeVisible()} name='Grypa'>
-            <LayerGroup>
-              <Circle center={[51.51, -0.08]} fillColor='red' color='red' weight={1} radius={100} stroke={true}/>
-            </LayerGroup>
-          </Overlay>
-          <Overlay checked={this.shouldBeVisible()} name='Cholera'>
-            <LayerGroup>
-              <Circle center={[51.505, -0.09]} fillColor='blue' color='blue' weight={1} radius={200} stroke={true}/>
-            </LayerGroup>
-          </Overlay>
+          {
+            diseasesNames.map((name) => {
+              return (
+                <Overlay checked={this.shouldBeVisible()} name={ name }>
+                  <LayerGroup>
+                    {
+                      diseasesGroupedByName[name].map(({ latitude, longitude, color, radius}) => {
+                        return (
+                          <Circle center={ [latitude, longitude]} fillColor={ color } color={ color } weight={1} radius={ radius } stroke={true}/>
+                        )
+                      })
+                    }
+                  </LayerGroup>
+                </Overlay>
+              )
+            })
+          }
         </LayersControl>
       </Map>
     )
@@ -43,4 +61,19 @@ class LeafletMap extends Component {
   }
 }
 
-export default LeafletMap;
+const mapStateToProps = (state) => {
+  return {
+    center: getCenter(state),
+    diseasesGroupedByName: getDiseasesGroupedByName(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    retrieveDiseases: function () {
+      dispatch(diseasesGetAll());
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeafletMap);

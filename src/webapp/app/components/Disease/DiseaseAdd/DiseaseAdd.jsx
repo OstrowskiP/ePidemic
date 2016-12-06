@@ -1,9 +1,12 @@
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField'
 import { reduxForm } from 'redux-form';
 import Paper from 'material-ui/Paper';
 import { diseaseAdd } from './actions';
+import MenuItem from 'material-ui/MenuItem'
+import { getDiseasesNames } from '../LeafletMap/selectors';
 
 const style = {
   height: 'auto',
@@ -24,7 +27,8 @@ class DiseaseAdd extends Component {
         radius
       },
       handleSubmit,
-      handleSubmitImpl
+      handleSubmitImpl,
+      diseasesNames
     } = this.props;
 
     const onSubmit = handleSubmit(handleSubmitImpl);
@@ -35,22 +39,32 @@ class DiseaseAdd extends Component {
           <TextField
             { ...latitude }
             hintText='Szerokość'
+            floatingLabelText='Szerokość'
           /><br />
           <TextField
             { ...longitude }
-            hintText='Wysykość'
+            hintText='Wysokość'
+            floatingLabelText='Wysokość'
           /><br />
-          <TextField
+          <SelectField
+            floatingLabelText='Jednostka chorobowa'
             { ...name }
-            hintText='Jednostka chorobowa'
-          /><br />
+            onChange={(event, index, value) => name.onChange(value)}>
+            {
+              diseasesNames.map((diseaseName) => {
+                return (<MenuItem value={ diseaseName } primaryText={ diseaseName }/>)
+              })
+            }
+          </SelectField><br />
           <TextField
             { ...radius }
             hintText='Promień'
+            floatingLabelText='Promień'
           /><br />
           <TextField
             { ...color }
             hintText='Kolor'
+            floatingLabelText='Kolor'
           /><br />
           <RaisedButton
             label='wprowadź'
@@ -66,8 +80,10 @@ class DiseaseAdd extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = (state) => {
+  return {
+    diseasesNames: getDiseasesNames(state)
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {

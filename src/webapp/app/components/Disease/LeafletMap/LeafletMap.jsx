@@ -9,13 +9,17 @@ import {
 const { Overlay } = LayersControl;
 import { connect } from 'react-redux';
 import { diseasesGetAll } from './actions';
-import { getDiseasesGroupedByName } from './selectors';
+import { getDiseasesGroupedByName, getCenter } from './selectors';
 import _ from 'lodash';
-import { getCenter } from './selectors';
+import { change } from 'redux-form';
 
 class LeafletMap extends Component {
   componentDidMount() {
-    window.mapElement = this.refs.map.leafletElement;
+    let { updateLatLng } = this.props;
+
+    this.refs.map.leafletElement.on('click', ({ latlng }) => {
+      updateLatLng(latlng);
+    })
   }
 
   componentWillMount() {
@@ -72,6 +76,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     retrieveDiseases: function () {
       dispatch(diseasesGetAll());
+    },
+    updateLatLng: function ({ lat, lng }) {
+      dispatch(change('diseaseAddForm', 'latitude', lat.toString()));
+      dispatch(change('diseaseAddForm', 'longitude', lng.toString()));
     }
   }
 };

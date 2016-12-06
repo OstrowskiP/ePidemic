@@ -1,0 +1,19 @@
+.disease-container {
+  width: 100%;
+  height: calc(100vh - #{$footer-height} - #{$header-height});
+  position: relative;
+
+  .disease-left-col {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+  }
+
+  .disease-right-col {
+    width: 900px;
+    height: 100%;
+    position: absolute;
+    float: right;
+    right: 0px;
+  }
+}

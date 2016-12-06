@@ -1,4 +1,4 @@
-import { diseasesNodeClient } from '../../core/index';
+import { diseasesNodeClient } from '../../../core/index';
 
 export const DISEASES_SET = 'DISEASES_SET';
 

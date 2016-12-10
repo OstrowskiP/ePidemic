@@ -1,11 +1,13 @@
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField'
 import { reduxForm } from 'redux-form';
 import Paper from 'material-ui/Paper';
-import { diseaseAdd } from './actions';
+import { diseaseAdd } from '../DiseaseAdd/actions';
+import AutoComplete from 'material-ui/AutoComplete'
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem'
+import { displaySearchResults } from './actions';
 import { getDiseasesNames } from '../LeafletMap/selectors';
 
 const style = {
@@ -16,15 +18,12 @@ const style = {
   margin: 10
 };
 
-class DiseaseAdd extends Component {
+class DiseaseSearch extends Component {
   render() {
     const {
       fields: {
-        latitude,
-        longitude,
+        area,
         name,
-        color,
-        radius
       },
       handleSubmit,
       handleSubmitImpl,
@@ -37,20 +36,15 @@ class DiseaseAdd extends Component {
       <Paper style={style} zDepth={1}>
         <form onSubmit={ onSubmit }>
           <TextField
-            { ...latitude }
-            hintText='Szerokość'
-            floatingLabelText='Szerokość'
-          /><br />
-          <TextField
-            { ...longitude }
-            hintText='Wysokość'
-            floatingLabelText='Wysokość'
-          /><br />
+            { ...area }
+            hintText='Obszar'
+            floatingLabelText='Obszar'
+          /> <br/>
           {/*<TextField*/}
             {/*{ ...name }*/}
-            {/*hintText='Jednostka chorobowa'*/}
-            {/*floatingLabelText='Jednostka chorobowa'*/}
-          {/*/><br />*/}
+            {/*hintText='Jednostka chrobowa'*/}
+            {/*floatingLabelText='Jednostka chrobowa'*/}
+          {/*/> <br/>*/}
           <SelectField
             floatingLabelText='Jednostka chorobowa'
             { ...name }
@@ -61,18 +55,8 @@ class DiseaseAdd extends Component {
               })
             }
           </SelectField><br />
-          <TextField
-            { ...radius }
-            hintText='Promień'
-            floatingLabelText='Promień'
-          /><br />
-          <TextField
-            { ...color }
-            hintText='Kolor'
-            floatingLabelText='Kolor'
-          /><br />
           <RaisedButton
-            label='wprowadź'
+            label='szukaj'
             primary={ true }
             style={{
               width: '256px'
@@ -94,18 +78,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmitImpl: (values) => {
-      dispatch(diseaseAdd(values));
+      dispatch(displaySearchResults(values));
     }
   }
 };
 
 export default reduxForm({
-  form: 'diseaseAddForm',
+  form: 'diseaseSearchForm',
   fields: [
-    'latitude',
-    'longitude',
+    'area',
     'name',
-    'color',
-    'radius'
   ]
-}, mapStateToProps, mapDispatchToProps)(DiseaseAdd);
+}, mapStateToProps, mapDispatchToProps)(DiseaseSearch);

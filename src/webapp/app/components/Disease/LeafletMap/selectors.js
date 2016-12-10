@@ -5,8 +5,12 @@ export const getDiseasesGroupedByName = state => {
   return _.groupBy(state.disease.map.diseases, 'name');
 };
 
+export const getAllDiseasesGroupedByName = state => {
+  return _.groupBy(state.disease.map.allDiseases, 'name');
+};
+
 export const getDiseasesNames = createSelector(
-  getDiseasesGroupedByName,
+  getAllDiseasesGroupedByName,
   (diseasesGroupedByName) => {
     return _.keys(diseasesGroupedByName);
   }

@@ -47,7 +47,7 @@ class Home extends Component {
             }}
           />
         </Link>
-        <Link to='/disease'>
+        <Link to='/disease/search'>
           <FlatButton
             label='wyszukaj'
             primary={ true }

@@ -77,15 +77,5 @@ if (TARGET === 'start' || !TARGET) {
 }
 
 if (TARGET === 'build') {
-  module.exports = merge(common, {
-    plugins: [
-      new copyWebpackPlugin([
-        {
-          context: PATHS.build,
-          from: '**/*',
-          to: '../../../target/classes/static/'
-        }
-      ]),
-    ]
-  })
+  module.exports = merge(common, {});
 }

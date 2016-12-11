@@ -14,6 +14,8 @@ export default class DiseasesNodeClient {
   }
 
   createDisease(diseaseAsset) {
+    diseaseAsset.definition = diseaseAsset.diseaseDefinition._id;
+    delete diseaseAsset.diseaseDefinition;
     return fetch(
       `${ this.serviceUri }/api/disease`,
       {

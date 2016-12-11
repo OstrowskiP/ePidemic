@@ -2,10 +2,10 @@ import _ from 'lodash';
 import { diseasesGetByName } from '../LeafletMap/actions';
 import { mapCenterSet } from '../LeafletMap/actions';
 
-export const displaySearchResults = ({ area, name }) => {
+export const displaySearchResults = ({ area, diseaseDefinition }) => {
   return dispatch => {
-    if (!_.isEmpty(name))
-      dispatch(diseasesGetByName(name));
+    if (!_.isEmpty(diseaseDefinition))
+      dispatch(diseasesGetByName(diseaseDefinition.name));
 
     if (!_.isEmpty(area))
       fetch(

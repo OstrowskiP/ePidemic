@@ -41,7 +41,7 @@ export const diseasesGetByName = (name) => {
     diseasesNodeClient.getAllDiseases()
       .then(({ diseases }) => {
         let result = _.filter(diseases, (disease) => {
-          return disease.name == name;
+          return disease.definition.name == name;
         });
 
         dispatch(diseasesSet(result));

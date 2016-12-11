@@ -1,9 +1,9 @@
 import Disease from './disease.model';
 
 export const addHandler = (request, response) => {
-  let snippet = new Disease(request.body);
+  let disease = new Disease(request.body);
 
-  snippet.save((error) => {
+  disease.save((error) => {
     if (error) {
       return response.json({
         error: error,
@@ -19,18 +19,20 @@ export const addHandler = (request, response) => {
 };
 
 export const getHandler = (request, response) => {
-  Disease.find({}, function(error, diseases) {
-    if (error) {
-      return response.json({
-        success: true,
-        error
-      })
-    }
+  Disease.find({})
+    .populate('definition')
+    .exec(function(error, diseases) {
+      if (error) {
+        return response.json({
+          success: true,
+          error
+        })
+      }
 
-    response.json({
-      success: true,
-      diseases
-    })
+      response.json({
+        success: true,
+        diseases
+      })
   })
 };
 

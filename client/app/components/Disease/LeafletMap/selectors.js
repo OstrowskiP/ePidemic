@@ -2,11 +2,11 @@ import _ from 'lodash';
 import { createSelector } from 'reselect';
 
 export const getDiseasesGroupedByName = state => {
-  return _.groupBy(state.disease.map.diseases, 'name');
+  return _.groupBy(state.disease.map.diseases, 'definition.name');
 };
 
 export const getAllDiseasesGroupedByName = state => {
-  return _.groupBy(state.disease.map.allDiseases, 'name');
+  return _.groupBy(state.disease.map.allDiseases, 'definition.name');
 };
 
 export const getDiseasesNames = createSelector(

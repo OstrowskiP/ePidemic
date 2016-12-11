@@ -68,7 +68,7 @@ class Home extends Component {
         </Link>
         }
         { isOperator &&
-        <Link to = '/'>
+        <Link to = '/managediseases'>
           <FlatButton
             label='edycja słownika'
             primary={ true }

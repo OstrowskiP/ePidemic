@@ -2,13 +2,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import Paper from 'material-ui/Paper';
-import { diseaseAdd } from '../DiseaseAdd/actions';
-import AutoComplete from 'material-ui/AutoComplete'
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem'
 import { displaySearchResults } from './actions';
-import { getDiseasesNames } from '../LeafletMap/selectors';
+import { getDiseaseDefinitions } from '../../DiseaseDefinition/selectors';
+import { diseaseDefinitionsGetAll } from '../../DiseaseDefinition/actions';
 
 const style = {
   height: 'auto',
@@ -19,15 +18,21 @@ const style = {
 };
 
 class DiseaseSearch extends Component {
+  componentWillMount() {
+    let { retrieveDiseaseDefinitions } = this.props;
+
+    retrieveDiseaseDefinitions();
+  }
+
   render() {
     const {
       fields: {
         area,
-        name,
+        diseaseDefinition,
       },
       handleSubmit,
       handleSubmitImpl,
-      diseasesNames
+      diseaseDefinitions
     } = this.props;
 
     const onSubmit = handleSubmit(handleSubmitImpl);
@@ -40,18 +45,13 @@ class DiseaseSearch extends Component {
             hintText='Obszar'
             floatingLabelText='Obszar'
           /> <br/>
-          {/*<TextField*/}
-            {/*{ ...name }*/}
-            {/*hintText='Jednostka chrobowa'*/}
-            {/*floatingLabelText='Jednostka chrobowa'*/}
-          {/*/> <br/>*/}
           <SelectField
             floatingLabelText='Jednostka chorobowa'
-            { ...name }
-            onChange={(event, index, value) => name.onChange(value)}>
+            { ...diseaseDefinition }
+            onChange={(event, index, value) => diseaseDefinition.onChange(value)}>
             {
-              diseasesNames.map((diseaseName) => {
-                return (<MenuItem value={ diseaseName } primaryText={ diseaseName }/>)
+              diseaseDefinitions.map((diseaseDefinition) => {
+                return (<MenuItem value={ diseaseDefinition } primaryText={ diseaseDefinition.name }/>)
               })
             }
           </SelectField><br />
@@ -71,7 +71,7 @@ class DiseaseSearch extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    diseasesNames: getDiseasesNames(state)
+    diseaseDefinitions: getDiseaseDefinitions(state)
   }
 };
 
@@ -79,6 +79,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmitImpl: (values) => {
       dispatch(displaySearchResults(values));
+    },
+    retrieveDiseaseDefinitions: () => {
+      dispatch(diseaseDefinitionsGetAll());
     }
   }
 };
@@ -87,6 +90,6 @@ export default reduxForm({
   form: 'diseaseSearchForm',
   fields: [
     'area',
-    'name',
+    'diseaseDefinition',
   ]
 }, mapStateToProps, mapDispatchToProps)(DiseaseSearch);

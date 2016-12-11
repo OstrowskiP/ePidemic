@@ -44,9 +44,9 @@ class LeafletMap extends Component {
                 <Overlay checked={this.shouldBeVisible()} name={ name }>
                   <LayerGroup>
                     {
-                      diseasesGroupedByName[name].map(({ latitude, longitude, color, radius}) => {
+                      diseasesGroupedByName[name].map(({ latitude, longitude, radius, definition }) => {
                         return (
-                          <Circle center={ [latitude, longitude]} fillColor={ color } color={ color } weight={1} radius={ radius } stroke={true}/>
+                          <Circle center={ [latitude, longitude]} fillColor={ definition.color } color={ definition.color } weight={1} radius={ radius } stroke={true}/>
                         )
                       })
                     }

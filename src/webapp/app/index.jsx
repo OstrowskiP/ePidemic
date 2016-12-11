@@ -7,9 +7,10 @@ import Home from './components/Home/Home';
 import Login from './components/Authentication/Login/Login';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Register from './components/Authentication/Register/Register';
-import Users from './components/Admin/Users/Users';
 import AddUser from './components/Admin/Users/AddUser';
-import LeafletMap from './components/LeafletMap/LeafletMap';
+import Disease from './components/Disease/Disease';
+import DiseaseAdd from './components/Disease/DiseaseAdd/DiseaseAdd'
+import DiseaseSearch from './components/Disease/DiseaseSearch/DiseaseSearch'
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -37,7 +38,10 @@ ReactDOM.render((
           </Route>
           <Route path='login' component={ Login }/>
           <Route path='register' component={ Register }/>
-          <Route path='map' component={ LeafletMap }/>
+          <Route path='disease' component={ Disease }>
+            <Route path='add' component={ DiseaseAdd }/>
+            <Route path='search' component={ DiseaseSearch }/>
+          </Route>
           <Route path='about' component={ About }/>
           <Route path='contact' component={ Contact }/>
           <Route path='*' component={ PageNotFound }/>

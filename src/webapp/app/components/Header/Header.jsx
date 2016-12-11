@@ -47,7 +47,7 @@ class Home extends Component {
             }}
           />
         </Link>
-        <Link to='/map'>
+        <Link to='/disease/search'>
           <FlatButton
             label='wyszukaj'
             primary={ true }
@@ -79,7 +79,7 @@ class Home extends Component {
         </Link>
         }
         { isOperator &&
-        <Link to = '/'>
+        <Link to = '/disease/add'>
           <FlatButton
             label='nowe zgłoszenie'
             primary={ true }

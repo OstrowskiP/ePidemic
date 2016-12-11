@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Users from './Users/Users'
-import RaisedButton from 'material-ui/RaisedButton';
-import { Link } from 'react-router';
 
 class Admin extends Component {
   render() {

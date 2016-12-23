@@ -51,7 +51,7 @@ ReactDOM.render((
           </Route>
           <Route path='about' component={ About }/>
           <Route path='contact' component={ Contact }/>
-          <Route path='*' component={ PageNotFound }/>
+          <Route path='/*' component={ PageNotFound }/>
         </Route>
       </Router>
     </Provider>

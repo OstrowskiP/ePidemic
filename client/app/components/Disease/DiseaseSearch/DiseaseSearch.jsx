@@ -49,6 +49,7 @@ class DiseaseSearch extends Component {
             floatingLabelText='Jednostka chorobowa'
             { ...diseaseDefinition }
             onChange={(event, index, value) => diseaseDefinition.onChange(value)}>
+            <MenuItem value='all'  primaryText='Wszystkie'/>
             {
               diseaseDefinitions.map((diseaseDefinition) => {
                 return (<MenuItem value={ diseaseDefinition } primaryText={ diseaseDefinition.name }/>)

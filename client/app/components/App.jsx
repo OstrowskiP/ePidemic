@@ -1,6 +1,7 @@
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import SnackbarWrapper from './Common/SnackBar/SnackbarWrapper';
+import DialogWrapper from './Common/Dialog/DialogWrapper';
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         </content>
         <Footer />
         <SnackbarWrapper />
+        <DialogWrapper />
       </div>
     )
   }

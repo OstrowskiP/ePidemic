@@ -2,6 +2,8 @@ import { snackbarHide } from './actions';
 import React, { Component } from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import { connect } from 'react-redux';
+import { getIsOpen } from './selectors';
+import { getMessage } from './selectors';
 
 class SnackbarWrapper extends Component {
   render() {
@@ -18,10 +20,11 @@ class SnackbarWrapper extends Component {
   }
 }
 
-const mapStateToProps = ({ snackbar }) => {
-  let { isOpened, message } = snackbar;
-
-  return { isOpened, message };
+const mapStateToProps = (state) => {
+  return {
+    isOpened: getIsOpen(state),
+    message: getMessage(state)
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,5 +1,6 @@
 import { authenticationNodeClient } from '../../../core/index';
 import { redirectTo } from '../../Common/actions';
+import { dialogShow } from '../../Common/Dialog/actions';
 
 const registerErrorMessage = 'Rejestracja nie powiodła się: Nazwa użytkownika jest zajęta';
 
@@ -33,6 +34,7 @@ export const register = (credentials) => {
     authenticationNodeClient.register(credentials)
       .then(() => {
         dispatch(registerSuccess());
+        dispatch(dialogShow('Skontaktuj się z administratorem w celu aktuwacji konta', 'Konto zostało utworzone'));
         redirectTo('/')
       })
       .catch(() => dispatch(registerFailure(registerErrorMessage)));

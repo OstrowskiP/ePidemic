@@ -1,5 +1,6 @@
 import authentication from '../components/Authentication/reducer';
 import snackbar from '../components/Common/SnackBar/reducer';
+import dialog from '../components/Common/Dialog/reducer';
 import users from '../components/Admin/Users/reducer';
 import map from '../components/Disease/LeafletMap/reducer';
 import definition from '../components/DiseaseDefinition/reducer'
@@ -17,6 +18,7 @@ const disease = combineReducers({
 
 const reducers = {
   authentication,
+  dialog,
   form: reduxFormReducer,
   snackbar,
   admin,

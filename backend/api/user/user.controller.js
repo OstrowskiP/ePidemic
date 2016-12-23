@@ -1,6 +1,8 @@
 import User from './user.model';
 import _ from 'lodash';
 
+const accountIsInactive = 'Logowanie nie powiodło się: Konto jest nieaktywne';
+
 export const registerHandler = (request, response) => {
   User.register(
     new User({
@@ -24,9 +26,21 @@ export const registerHandler = (request, response) => {
 };
 
 export const loginHandler = (request, response) => {
-    response.json({
-      success: true
-    })
+    let { user } = request;
+    console.log(user);
+    if (user.active) {
+      response.json({
+        success: true
+      })
+    } else {
+      response.json({
+        success: false,
+        error: {
+          code: 401,
+          message: accountIsInactive
+        }
+      })
+    }
 };
 
 export const logoutHandler = (request, response) => {
@@ -78,7 +92,7 @@ export const deleteUserByIdHandler = (request, response) => {
 
     response.json({
       success: true,
-      message: 'User successfully deleted'
+      message: 'Usuwanie użytkownika zakończone sukcesem'
     });
   });
 };
@@ -107,7 +121,7 @@ export const updateUserByIdHandler = (request, response) => {
 
       response.json({
         success: true,
-        message: 'User successfully updated'
+        message: 'Edycja użytkownika zakończona sukcesem'
       });
     });
   });
@@ -142,7 +156,7 @@ export const createUserHandler = (request, response) => {
 
       response.json({
         success: true,
-        message: 'User successfully added'
+        message: 'Dodawanie użytkownika zakończone sukcesem'
       })
     }
   )

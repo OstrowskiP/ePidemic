@@ -13,7 +13,7 @@ export const addHandler = (request, response) => {
 
     response.json({
       success: true,
-      message: 'Disease was successfully added'
+      message: 'Dodano zgłoszenie'
     })
   })
 };

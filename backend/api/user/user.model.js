@@ -18,11 +18,11 @@ const userSchema = new Schema ({
   role: {
     type: String,
     enum: ['admin', 'operator', 'user'],
-    default: 'user'
+    default: 'operator'
   },
   active: {
     type: Boolean,
-    default: true
+    default: false
   }
 });
 

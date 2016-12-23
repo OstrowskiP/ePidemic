@@ -14,7 +14,7 @@ export const addHandler = (request, response) => {
 
     response.json({
       success: true,
-      message: 'Disease definition was successfully added'
+      message: 'Dodawanie jednostki chorobowej zakończone sukcesem'
     })
   })
 };
@@ -57,7 +57,7 @@ export const deleteByIdHandler = (request, response) => {
 
       response.json({
         success: true,
-        message: 'Disease definition was successfully deleted'
+        message: 'Usuwanie jednostki chorobowej zakończone sukcesem'
       });
     })
   });

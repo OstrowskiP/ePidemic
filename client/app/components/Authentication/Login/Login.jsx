@@ -82,11 +82,11 @@ const validate = values => {
   let errors = {};
 
   if (_.isEmpty(values.username)) {
-      errors.username = 'Username cannot be empty'
+      errors.username = 'Nazwa użytkownika nie może być pusta'
   }
 
   if (_.isEmpty(values.password)) {
-    errors.password = "Password cannot be empty"
+    errors.password = "Hasło nie może być puste"
   }
 
   return errors

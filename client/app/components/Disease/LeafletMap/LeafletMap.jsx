@@ -37,25 +37,15 @@ class LeafletMap extends Component {
           attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <LayersControl position='topright'>
           {
             diseasesNames.map((name) => {
-              return (
-                <Overlay checked={this.shouldBeVisible()} name={ name }>
-                  <LayerGroup>
-                    {
-                      diseasesGroupedByName[name].map(({ latitude, longitude, radius, definition }) => {
-                        return (
-                          <Circle center={ [latitude, longitude]} fillColor={ definition.color } color={ definition.color } weight={1} radius={ radius } stroke={true}/>
-                        )
-                      })
-                    }
-                  </LayerGroup>
-                </Overlay>
-              )
+              return diseasesGroupedByName[name].map(({ latitude, longitude, radius, definition }) => {
+                return (
+                  <Circle center={ [latitude, longitude]} fillColor={ definition.color } color={ definition.color } weight={1} radius={ radius } stroke={true}/>
+                )
+              })
             })
           }
-        </LayersControl>
       </Map>
     )
   }

@@ -30,40 +30,42 @@ class SignUp extends Component {
     const onSubmit = handleSubmit(handleSubmitImpl);
 
     return (
-      <form className='register-form' onSubmit={ onSubmit }>
-        <div className='register-title'>Rejestracja</div>
-        { !_.isEmpty(errorMessage) &&
-          <div className='register-error'>{ errorMessage }</div>
-        }
-        <TextField
-          { ...username }
-          errorText={ username.touched && username.error }
-          hintText='Nazwa użytkownika'
-          floatingLabelText='Nazwa użytkownika'
-        /><br />
-        <TextField
-          { ...password }
-          errorText={ password.touched && password.error }
-          hintText='Hasło'
-          floatingLabelText='Hasło'
-          type='password'
-        /><br />
-        <TextField
-          { ...confirmedPassword }
-          errorText={ confirmedPassword.touched && confirmedPassword.error }
-          hintText='Potwierdź hasło'
-          floatingLabelText='Potwierdź hasło'
-          type='password'
-        /><br /><br />
-        <RaisedButton
-          label='Zarejestruj'
-          primary={true}
-          style={{
-            width: '256px'
-          }}
-          type='submit'
-        />
-      </form>
+      <div className='register-container'>
+        <form className='register-form' onSubmit={ onSubmit }>
+          <div className='register-title'>Rejestracja</div>
+          { !_.isEmpty(errorMessage) &&
+            <div className='register-error'>{ errorMessage }</div>
+          }
+          <TextField
+            { ...username }
+            errorText={ username.touched && username.error }
+            hintText='Nazwa użytkownika'
+            floatingLabelText='Nazwa użytkownika'
+          /><br />
+          <TextField
+            { ...password }
+            errorText={ password.touched && password.error }
+            hintText='Hasło'
+            floatingLabelText='Hasło'
+            type='password'
+          /><br />
+          <TextField
+            { ...confirmedPassword }
+            errorText={ confirmedPassword.touched && confirmedPassword.error }
+            hintText='Potwierdź hasło'
+            floatingLabelText='Potwierdź hasło'
+            type='password'
+          /><br /><br />
+          <RaisedButton
+            label='Zarejestruj'
+            primary={true}
+            style={{
+              width: '256px'
+            }}
+            type='submit'
+          />
+        </form>
+      </div>
     )
   }
 }

@@ -141,7 +141,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(logout());
     },
     authenticate: function () {
-      dispatch(authenticate());
+      dispatch(authenticate(false));
     }
   }
 };

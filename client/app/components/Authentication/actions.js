@@ -45,13 +45,15 @@ export const logout = () => {
   }
 };
 
-export const authenticate = () => {
+export const authenticate = (redirect = true) => {
   return dispatch => {
     authenticationNodeClient.authenticate()
       .then(result => {
         if (result.success) {
           dispatch(authenticationSuccess(result.user));
-          redirectTo('/')
+
+          if (redirect)
+            redirectTo('/')
         }
       });
   }

@@ -38,11 +38,13 @@ class Login extends Component {
             { ...username }
             errorText={ username.touched && username.error }
             hintText='Nazwa użytkownika'
+            floatingLabelText='Nazwa użytkownika'
           /><br />
           <TextField
             { ...password }
             errorText={ password.touched && password.error }
             hintText='Hasło'
+            floatingLabelText='Hasło'
             type='password'
           /><br /><br />
           <RaisedButton

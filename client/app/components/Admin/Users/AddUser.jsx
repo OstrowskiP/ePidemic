@@ -44,6 +44,7 @@ class AddUser extends Component {
             { ...password }
             hintText='Hasło'
             floatingLabelText='Hasło'
+            type='password'
           /><br />
           <TextField
             { ...name }

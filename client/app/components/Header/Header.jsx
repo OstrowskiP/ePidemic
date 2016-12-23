@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import {
   getIsAuthenticated,
   getIsAdmin,
@@ -15,13 +15,6 @@ import {
 } from '../Authentication/selectors';
 
 class Home extends Component {
-  componentDidUpdate() {
-    let { isAuthenticated } = this.props;
-
-    if (isAuthenticated)
-      browserHistory.push('/');
-  }
-
   componentWillMount() {
     let { authenticate } = this.props;
 

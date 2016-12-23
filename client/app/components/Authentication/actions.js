@@ -4,6 +4,7 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
 import { authenticationNodeClient } from '../../core/index';
+import { redirectTo } from '../Common/actions';
 
 export const logoutRequest = () => {
   return {
@@ -50,6 +51,7 @@ export const authenticate = () => {
       .then(result => {
         if (result.success) {
           dispatch(authenticationSuccess(result.user));
+          redirectTo('/')
         }
       });
   }

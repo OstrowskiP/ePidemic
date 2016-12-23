@@ -11,7 +11,7 @@ class SnackbarWrapper extends Component {
       <Snackbar
         open={ isOpened }
         message={ message }
-        autoHideDuration={4000}
+        autoHideDuration={ 5000 }
         onRequestClose={ snackbarHide }
       />
     );

@@ -28,7 +28,7 @@ const authentication = (state = initialState, action) => {
 
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: true,
+        isFetching: false,
         isAuthenticated: false,
         errorMessage: ''
       });
@@ -68,8 +68,8 @@ const authentication = (state = initialState, action) => {
 
     case REGISTER_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: true,
+        isFetching: false,
+        isAuthenticated: false,
         errorMessage: '',
       });
 

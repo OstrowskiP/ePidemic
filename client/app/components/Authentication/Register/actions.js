@@ -1,7 +1,7 @@
 import { authenticationNodeClient } from '../../../core/index';
-import { login } from '../Login/actions';
+import { redirectTo } from '../../Common/actions';
 
-const registerErrorMessage = 'Failed to register: Please try again later';
+const registerErrorMessage = 'Rejestracja nie powiodła się: Nazwa użytkownika jest zajęta';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -13,10 +13,9 @@ export const registerRequest = () => {
   }
 };
 
-export const registerSuccess = (currentUser) => {
+export const registerSuccess = () => {
   return {
-    type: REGISTER_SUCCESS,
-    currentUser
+    type: REGISTER_SUCCESS
   }
 };
 
@@ -34,8 +33,8 @@ export const register = (credentials) => {
     authenticationNodeClient.register(credentials)
       .then(() => {
         dispatch(registerSuccess());
-        dispatch(login(credentials));
+        redirectTo('/')
       })
-      .catch((error) => dispatch(registerFailure(error)));
+      .catch(() => dispatch(registerFailure(registerErrorMessage)));
   }
 };

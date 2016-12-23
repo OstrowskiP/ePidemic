@@ -27,7 +27,7 @@ export const registerHandler = (request, response) => {
 
 export const loginHandler = (request, response) => {
     let { user } = request;
-    console.log(user);
+
     if (user.active) {
       response.json({
         success: true
@@ -135,7 +135,8 @@ export const createUserHandler = (request, response) => {
     password,
     name,
     surname,
-    email
+    email,
+    role
   } = body;
 
   User.register(
@@ -143,7 +144,8 @@ export const createUserHandler = (request, response) => {
       username,
       name,
       surname,
-      email
+      email,
+      role
     }),
     password,
     (error) => {

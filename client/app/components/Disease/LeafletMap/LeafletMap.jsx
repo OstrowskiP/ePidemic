@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
   Circle,
-  LayerGroup,
-  LayersControl,
   Map,
   TileLayer,
 } from 'react-leaflet';
-const { Overlay } = LayersControl;
 import { connect } from 'react-redux';
 import { diseasesGetAll } from './actions';
 import { getDiseasesGroupedByName, getCenter } from './selectors';

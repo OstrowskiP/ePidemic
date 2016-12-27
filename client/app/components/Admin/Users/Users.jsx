@@ -1,4 +1,4 @@
-import { usersGetAll, usersSelect } from './actions';
+import { usersGetAll, usersSelectAndSetEdit } from './actions';
 import React, { Component } from 'react';
 import UsersList from './UsersList';
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     selectUsers: function (selectedUsers) {
-      dispatch(usersSelect(selectedUsers));
+      dispatch(usersSelectAndSetEdit(selectedUsers));
     }
 
   }

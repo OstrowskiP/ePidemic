@@ -8,6 +8,7 @@ import Login from './components/Authentication/Login/Login';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Register from './components/Authentication/Register/Register';
 import AddUser from './components/Admin/Users/AddUser';
+import EditUser from './components/Admin/Users/EditUser';
 import Disease from './components/Disease/Disease';
 import DiseaseAdd from './components/Disease/DiseaseAdd/DiseaseAdd'
 import DiseaseSearch from './components/Disease/DiseaseSearch/DiseaseSearch'
@@ -38,6 +39,7 @@ ReactDOM.render((
           <Route path='admin' roles={ ['admin', 'user'] } component={ Admin }>
             <IndexRoute component={ AdminButtons }/>
             <Route path='addUser' component={ AddUser }/>
+            <Route path='editUser' component={ EditUser }/>
           </Route>
           <Route path='login' component={ Login }/>
           <Route path='register' component={ Register }/>

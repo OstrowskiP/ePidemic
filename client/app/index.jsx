@@ -35,7 +35,7 @@ ReactDOM.render((
       <Router history={ browserHistory }>
         <Route path='/' component={ App }>
           <IndexRoute component={ Home }/>
-          <Route path='admin' component={ Admin }>
+          <Route path='admin' roles={ ['admin', 'user'] } component={ Admin }>
             <IndexRoute component={ AdminButtons }/>
             <Route path='addUser' component={ AddUser }/>
           </Route>

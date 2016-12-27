@@ -7,9 +7,10 @@ import {
 import {
   REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE
 } from './Register/actions';
-import { AUTHENTICATION_SUCCESS } from './actions';
+import { AUTHENTICATION_SUCCESS, AUTHENTICATION_FAILURE } from './actions';
 
 const initialState = {
+  isCompleted: false,
   isFetching: false,
   isAuthenticated: false,
   currentUser: null,
@@ -85,8 +86,17 @@ const authentication = (state = initialState, action) => {
         errorMessage: ''
       });
 
+    case AUTHENTICATION_FAILURE:
+      return Object.assign({}, state, {
+        isCompleted: true,
+        isFetching: false,
+        isAuthenticated: false,
+        currentUser: null
+      });
+
     case AUTHENTICATION_SUCCESS:
       return Object.assign({}, state, {
+        isCompleted: true,
         isFetching: false,
         isAuthenticated: true,
         currentUser: action.currentUser

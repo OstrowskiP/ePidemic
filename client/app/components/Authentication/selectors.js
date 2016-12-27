@@ -20,3 +20,12 @@ export const getIsOperator = state => {
 
   return currentUser.role == 'operator';
 };
+
+export const getCurrentUserRole = state => {
+  if (_.isEmpty(state.authentication.currentUser))
+    return 'user';
+
+  return state.authentication.currentUser.role;
+};
+
+export const getIsCompleted = state => state.authentication.isCompleted;

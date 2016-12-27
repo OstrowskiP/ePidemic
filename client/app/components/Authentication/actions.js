@@ -3,6 +3,7 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
+export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE';
 import { authenticationNodeClient } from '../../core/index';
 import { redirectTo } from '../Common/actions';
 
@@ -21,6 +22,12 @@ export const logoutSuccess = () => {
 export const logoutFailure = (message) => {
   return {
     type: LOGOUT_FAILURE
+  }
+};
+
+export const authenticationFailure = () => {
+  return {
+    type: AUTHENTICATION_FAILURE
   }
 };
 
@@ -55,7 +62,10 @@ export const authenticate = (redirect = true) => {
           if (redirect)
             redirectTo('/')
         }
-      });
+      })
+      .catch(() => {
+        dispatch(authenticationFailure());
+      })
   }
 };
 

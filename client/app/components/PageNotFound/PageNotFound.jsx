@@ -5,8 +5,8 @@ class PageNotFound extends Component {
   render() {
     return (
       <div>
-        The page that you are trying to access does not exist. Please go back to&nbsp;
-        <Link className='page-not-found-link' to='/'>Home Page</Link>
+        Przepraszamy, ta strona jest niedostępna. Wróć do&nbsp;
+        <Link className='page-not-found-link' to='/'>strony głownej</Link>
       </div>
     )
   }

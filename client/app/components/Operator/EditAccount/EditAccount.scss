@@ -1,0 +1,15 @@
+.edit-account-container {
+  background: url("~/resources/images/login-background.jpg") no-repeat;
+  background-size: auto 100%;
+  background-position: right;
+  min-height: calc(100vh - #{$footer-height} - #{$header-height});
+  position: relative;
+
+  .edit-account-paper {
+    position: absolute;
+    top: calc(50% - 172px);
+    left: 125px;
+    padding: 10px;
+  }
+}
+

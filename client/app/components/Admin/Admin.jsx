@@ -5,8 +5,15 @@ import { getCurrentUserRole } from '../Authentication/selectors';
 import _ from 'lodash';
 import { redirectTo } from '../Common/actions';
 import { getIsCompleted } from '../Authentication/selectors';
+import { usersSelectClear } from './Users/actions';
 
 class Admin extends Component {
+  componentWillUnmount() {
+    let { clearSelection } = this.props;
+
+    clearSelection();
+  }
+
   componentDidUpdate() {
     let { isAuthenticationCompleted } = this.props;
 
@@ -42,7 +49,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    clearSelection: () => {
+      dispatch(usersSelectClear())
+    }
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);

@@ -29,3 +29,5 @@ export const getCurrentUserRole = state => {
 };
 
 export const getIsCompleted = state => state.authentication.isCompleted;
+
+export const getCurrentUser = state => state.authentication.currentUser;

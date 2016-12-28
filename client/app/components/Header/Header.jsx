@@ -50,7 +50,7 @@ class Home extends Component {
           />
         </Link>
         { isOperator &&
-        <Link to = '/'>
+        <Link to = '/editAccount'>
           <FlatButton
             label='edycja konta'
             primary={ true }

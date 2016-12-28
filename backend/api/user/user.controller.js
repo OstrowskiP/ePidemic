@@ -54,11 +54,10 @@ export const logoutHandler = (request, response) => {
 
 export const authenticateHandler = (request, response) => {
   let { user } = request;
-  let userInfo = _.pick(user, ['role']);
 
   response.json({
     success: true,
-    user: userInfo
+    user: user
   })
 };
 

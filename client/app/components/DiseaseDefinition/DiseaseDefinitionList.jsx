@@ -1,10 +1,16 @@
-import { diseaseDefinitionsGetAll, diseaseDefinitionsSelect } from './actions';
+import { diseaseDefinitionsGetAll, diseaseDefinitionsSelectAndEdit } from './actions';
 import React, { Component } from 'react';
 import DiseaseDefinitionListDummy from './DiseaseDefinitionListDummy';
 import { connect } from 'react-redux';
 import { getDiseaseDefinitions } from './selectors';
+import { diseaseDefinitionsSelectClear } from './actions';
 
 class DiseaseDefinitionList extends Component {
+  componentWillUnmount() {
+    let { clearSelection } = this.props;
+
+    clearSelection();
+  }
 
   componentWillMount() {
     let { retrieveDiseaseDefinitions } = this.props;
@@ -34,11 +40,12 @@ const mapDispatchToProps = (dispatch) => {
     retrieveDiseaseDefinitions: () => {
       dispatch(diseaseDefinitionsGetAll());
     },
-
-    selectItem: function (item) {
-      dispatch(diseaseDefinitionsSelect(item));
+    selectItem: (item) => {
+      dispatch(diseaseDefinitionsSelectAndEdit(item));
+    },
+    clearSelection: () => {
+      dispatch(diseaseDefinitionsSelectClear());
     }
-
   }
 };
 

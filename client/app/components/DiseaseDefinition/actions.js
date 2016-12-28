@@ -2,6 +2,7 @@ import { getSelectedDiseaseDefinitions } from './selectors.js';
 import { diseaseDefinitionsNodeClient } from '../../core';
 import { snackbarShow } from '../Common/SnackBar/actions';
 import _ from 'lodash'
+import { updateDiseaseDefinitionForm } from '../Common/actions';
 
 export const DISEASE_DEFINITIONS_SET = 'DISEASE_DEFINITIONS_SET';
 export const DISEASE_DEFINITION_SELECT = 'DISEASE_DEFINITION_SELECT';
@@ -18,6 +19,16 @@ export const diseaseDefinitionsSelect = (diseaseDefinitions) => {
   return {
     type: DISEASE_DEFINITION_SELECT,
     diseaseDefinitions
+  }
+};
+
+export const diseaseDefinitionsSelectAndEdit = (diseaseDefinitions) => {
+  return (dispatch, getState) => {
+    dispatch(diseaseDefinitionsSelect(diseaseDefinitions));
+
+    let diseaseDefinition = _.first(getSelectedDiseaseDefinitions(getState()));
+
+    updateDiseaseDefinitionForm(dispatch, 'editDiseaseDefinitionForm', diseaseDefinition);
   }
 };
 
@@ -64,3 +75,20 @@ export const diseaseDefinitionsDeleteSelected = () => {
       })
   }
 };
+
+export const diseaseDefinitionEdit = (updatedValues) => {
+  return (dispatch, getState) => {
+    let diseaseDefinition = _.first(getSelectedDiseaseDefinitions(getState()));
+    let updatedDiseaseDefinition = _.assign(diseaseDefinition, updatedValues);
+
+    diseaseDefinitionsNodeClient.updateDiseaseDefinitions([updatedDiseaseDefinition])
+      .then((result) => {
+        if (result.success == true) {
+          dispatch(diseaseDefinitionsGetAll());
+          dispatch(snackbarShow(result.message));
+          dispatch(diseaseDefinitionsSelectClear());
+          updateDiseaseDefinitionForm(dispatch, 'editDiseaseDefinitionForm', null);
+        }
+      })
+  }
+}

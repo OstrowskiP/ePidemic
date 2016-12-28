@@ -17,6 +17,9 @@ class DiseaseDefinitionButtons extends Component {
         <Link to='/managediseases/add'>
           <RaisedButton label="Nowy" className="admin-button"/>
         </Link>
+        <Link to='/managediseases/edit'>
+          <RaisedButton label="Edytuj" className="admin-button" disabled={ isItemSelected }/>
+        </Link>
         <RaisedButton label="Usuń" className="admin-button" onClick={ onDeleteButtonClicked } disabled={ isItemSelected }/>
       </div>
     )

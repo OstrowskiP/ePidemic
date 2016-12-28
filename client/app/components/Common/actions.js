@@ -15,3 +15,12 @@ export const updateUserForm = (dispatch, userFormName, user) => {
   dispatch(change(userFormName, 'email', user.email));
   dispatch(change(userFormName, 'role', user.role));
 };
+
+export const updateDiseaseDefinitionForm = (dispatch, diseaseFormName, diseaseDefinition) => {
+  if (_.isEmpty(diseaseDefinition))
+    return dispatch(reset(diseaseFormName));
+
+  dispatch(change(diseaseFormName, 'name', diseaseDefinition.name));
+  dispatch(change(diseaseFormName, 'color', diseaseDefinition.color));
+};
+

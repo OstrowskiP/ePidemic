@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
 import Paper from 'material-ui/Paper';
 import { diseaseDefinitionCreate } from './actions';
+import { diseaseDefinitionEdit } from './actions';
 
 const style = {
   height: 'auto',
@@ -13,7 +14,7 @@ const style = {
   margin: 10
 };
 
-class AddDiseaseDefinition extends Component {
+class EditDiseaseDefinition extends Component {
   render() {
     const {
       fields: {
@@ -40,7 +41,7 @@ class AddDiseaseDefinition extends Component {
             floatingLabelText='Kolor'
           /><br />
           <RaisedButton
-            label='Stwórz'
+            label='Edytuj'
             primary={ true }
             style={{
               width: '256px'
@@ -60,15 +61,15 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmitImpl: (values) => {
-      dispatch(diseaseDefinitionCreate(values));
+      dispatch(diseaseDefinitionEdit(values));
     },
   }
 };
 
 export default reduxForm({
-  form: 'addDiseaseDefinitionForm',
+  form: 'editDiseaseDefinitionForm',
   fields: [
     'name',
     'color',
   ]
-}, mapStateToProps, mapDispatchToProps)(AddDiseaseDefinition);
+}, mapStateToProps, mapDispatchToProps)(EditDiseaseDefinition);

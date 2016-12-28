@@ -16,6 +16,7 @@ import DiseaseDefinition from './components/DiseaseDefinition/DiseaseDefinition'
 import DiseaseDefinitionButtons from './components/DiseaseDefinition/DiseaseDefinitionButtons'
 import AddDiseaseDefinition from './components/DiseaseDefinition/AddDiseaseDefinition'
 import EditAccount from './components/Operator/EditAccount/EditAccount'
+import EditDiseaseDefinition from './components/DiseaseDefinition/EditDiseaseDefinition'
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -51,6 +52,7 @@ ReactDOM.render((
           <Route path='managediseases' component={ DiseaseDefinition }>
             <IndexRoute component={ DiseaseDefinitionButtons }/>
             <Route path='add' component={ AddDiseaseDefinition }/>
+            <Route path='edit' component={ EditDiseaseDefinition }/>
           </Route>
           <Route path='editAccount' component={ EditAccount }/>
           <Route path='about' component={ About }/>

@@ -8,6 +8,7 @@ import { diseaseAdd } from './actions';
 import MenuItem from 'material-ui/MenuItem'
 import { getDiseaseDefinitions } from '../../DiseaseDefinition/selectors';
 import { diseaseDefinitionsGetAll } from '../../DiseaseDefinition/actions';
+import { diseasesGetAll } from '../LeafletMap/actions';
 
 const style = {
   height: 'auto',
@@ -19,9 +20,10 @@ const style = {
 
 class DiseaseAdd extends Component {
   componentWillMount() {
-    let { retrieveDiseaseDefinitions } = this.props;
+    let { retrieveDiseaseDefinitions, retrieveDiseases } = this.props;
 
     retrieveDiseaseDefinitions();
+    retrieveDiseases();
   }
 
   render() {
@@ -94,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     retrieveDiseaseDefinitions: () => {
       dispatch(diseaseDefinitionsGetAll());
+    },
+    retrieveDiseases: () => {
+      dispatch(diseasesGetAll());
     }
   }
 };

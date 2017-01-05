@@ -1,0 +1,42 @@
+@import 'variables';
+
+html {
+  color: #222;
+  font-weight: 100;
+  font-size: 1em;
+  font-family: $font-family-base;
+  line-height: 1.375;
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+}
+
+$content-padding: 20px;
+
+content {
+  width: $max-content-width;
+  margin-right: auto;
+  margin-left: auto;
+  background: white;
+  display: block;
+  min-height: calc(100vh - #{$footer-height} - #{$header-height})
+}
+
+#app {
+  background: $background-color;
+}
+
+@import 'components/Admin/Admin';
+@import 'components/Header/Header';
+@import 'components/Footer/Footer';
+@import 'components/Authentication/Login/Login';
+@import 'components/Authentication/Register/Register';
+@import 'components/Disease/LeafletMap/LeafletMap';
+@import 'components/Home/Home';
+@import 'components/About/About';
+@import 'components/Contact/Contact';
+@import 'components/Disease/Disease';
+@import 'components/DiseaseDefinition/DiseaseDefinition';
+@import 'components/Operator/EditAccount/EditAccount';

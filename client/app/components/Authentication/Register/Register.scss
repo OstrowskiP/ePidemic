@@ -1,0 +1,23 @@
+.register-container {
+  background: url("~/resources/images/login-background.jpg") no-repeat;
+  background-size: auto 100%;
+  background-position: right;
+  min-height: calc(100vh - #{$footer-height} - #{$header-height});
+  position: relative;
+
+  .register-form {
+    position: absolute;
+    top: calc(50% - 170px);
+    left: 125px;
+  }
+
+  .register-error {
+    color: $error-color
+  }
+
+  .register-title {
+    font-size: 30px;
+    font-style: italic;
+    padding-bottom: 10px;
+  }
+}

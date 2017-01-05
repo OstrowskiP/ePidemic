@@ -1,0 +1,31 @@
+.disease-definition-container {
+  width: 100%;
+  height: calc(100vh - #{$footer-height} - #{$header-height});
+  position: relative;
+
+  .disease-definition-left-col {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+  }
+
+  .disease-definition-right-col {
+    width: 900px;
+    height: 100%;
+    position: absolute;
+    float: right;
+    right: 0px;
+  }
+}
+.disease-definition-button {
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+
+.users-table-container {
+  height: calc(100vh - #{$footer-height} - #{$header-height});
+
+  div:first-child {
+    max-height: 100%;
+  }
+}

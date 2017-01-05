@@ -11,9 +11,13 @@
   "license": "ISC",
   "homepage": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mkdirp ./target/classes/static; webpack --config src/webapp/webpack.config.js  --display-error-details;",
-    "start": "webpack-dev-server --config src/webapp/webpack.config.js"
+    "build": "webpack --config client/webpack.config.js --display-error-details;",
+    "start": "webpack-dev-server --config client/webpack.config.js",
+    "start-server": "nodemon ./backend/index.js --exec babel-node",
+    "clean-server": "rm -rf ./backend/build",
+    "build-server": "babel -d ./backend/build ./backend -s",
+    "debug-server": "node --debug ./backend/build/index.js",
+    "debug": "npm run clean-server && npm run build-server && npm run debug-server"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -33,16 +37,25 @@
     "node-sass": "^3.7.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.12.0",
     "webpack-uglify-js-plugin": "^1.1.9"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "leaflet": "^1.0.2",
     "lodash": "latest",
     "material-ui": "^0.16.0",
+    "mongoose": "^4.6.7",
+    "nodemailer": "^2.7.0",
+    "nodemon": "^1.9.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-leaflet": "^1.0.1",

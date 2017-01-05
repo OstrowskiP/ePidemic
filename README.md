@@ -41,3 +41,7 @@ npm run start-server
 npm run debug
 
 ```
+
+## Known issues
+
+Remove "npm-shrinkwrap.json" in case there are problems with installing dependencies.

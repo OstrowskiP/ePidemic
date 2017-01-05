@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const messageNotSent = 'Wysłanie wiadomości email nie powiodło się.';
+const messageNotSent = 'Wysłanie wiadomości zakończyło się niepowodzeniem.';
 
 export const sendEmailHandler = (request, response) => {
     var poolConfig = {
@@ -20,7 +20,7 @@ export const sendEmailHandler = (request, response) => {
         from: "ePidemic contact form <epidemic.sender@o2.pl>",
         to: "ePidemic Support <epidemic.mailbox@gmail.com>",
         replyTo: request.body.emailSender,
-        subject: "Contact form",
+        subject: "Formularz kontaktowy",
         text: request.body.emailBody
     }, function (error) {
         if (error) {
@@ -34,7 +34,7 @@ export const sendEmailHandler = (request, response) => {
         } else {
             response.json({
                 success: true,
-                message: 'Wysłano wiadomość'
+                message: 'Wysyłanie wiadomości zakończyło się pomyślnie.'
             });
         }
 

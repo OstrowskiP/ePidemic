@@ -1,5 +1,5 @@
 import UsersNodeClient from './rest/node/UsersNodeClient';
-import { backendServiceUri } from '../config';
+import {backendServiceUri} from '../config';
 import AuthenticationNodeClient from './rest/node/AuthenticationNodeClient';
 import DiseasesNodeClient from './rest/node/DiseasesNodeClient';
 import DiseaseDefinitionsNodeClient from './rest/node/DiseaseDefinitionsNodeClient';

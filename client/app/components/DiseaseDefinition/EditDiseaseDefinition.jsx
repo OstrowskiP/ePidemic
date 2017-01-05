@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
 import Paper from 'material-ui/Paper';
-import { diseaseDefinitionCreate } from './actions';
+import LinkButton from '../Common/Buttons/LinkButton';
 import { diseaseDefinitionEdit } from './actions';
 
 const style = {
@@ -28,28 +28,31 @@ class EditDiseaseDefinition extends Component {
     const onSubmit = handleSubmit(handleSubmitImpl);
 
     return (
-      <Paper style={style} zDepth={1}>
-        <form className='login-form' onSubmit={ onSubmit }>
-          <TextField
-            { ...name }
-            hintText='Jednostka chorobowa'
-            floatingLabelText='Jednostka chorobowa'
-          /><br />
-          <TextField
-            { ...color }
-            hintText='Kolor'
-            floatingLabelText='Kolor'
-          /><br />
-          <RaisedButton
-            label='Edytuj'
-            primary={ true }
-            style={{
-              width: '256px'
-            }}
-            type='submit'
-          />
-        </form>
-      </Paper>
+      <div>
+        <LinkButton label="cofnij" to="/managediseases" />
+        <Paper style={style} zDepth={1}>
+          <form className='login-form' onSubmit={ onSubmit }>
+            <TextField
+              { ...name }
+              hintText='Jednostka chorobowa'
+              floatingLabelText='Jednostka chorobowa'
+            /><br />
+            <TextField
+              { ...color }
+              hintText='Kolor'
+              floatingLabelText='Kolor'
+            /><br />
+            <RaisedButton
+              label='Edytuj'
+              primary={ true }
+              style={{
+                width: '256px'
+              }}
+              type='submit'
+            />
+          </form>
+        </Paper>
+      </div>
     );
   }
 }

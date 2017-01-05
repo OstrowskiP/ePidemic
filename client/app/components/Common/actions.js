@@ -24,3 +24,6 @@ export const updateDiseaseDefinitionForm = (dispatch, diseaseFormName, diseaseDe
   dispatch(change(diseaseFormName, 'color', diseaseDefinition.color));
 };
 
+export const resetForm = (dispatch, formName) => {
+  dispatch(reset(formName));
+};

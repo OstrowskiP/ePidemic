@@ -3,6 +3,7 @@ import { diseaseDefinitionsNodeClient } from '../../core';
 import { snackbarShow } from '../Common/SnackBar/actions';
 import _ from 'lodash'
 import { updateDiseaseDefinitionForm } from '../Common/actions';
+import { resetForm } from '../Common/actions';
 
 export const DISEASE_DEFINITIONS_SET = 'DISEASE_DEFINITIONS_SET';
 export const DISEASE_DEFINITION_SELECT = 'DISEASE_DEFINITION_SELECT';
@@ -56,6 +57,7 @@ export const diseaseDefinitionCreate = (user) => {
         if (result.success == true) {
           dispatch(diseaseDefinitionsGetAll());
           dispatch(snackbarShow(result.message));
+          resetForm(dispatch, 'addDiseaseDefinitionForm')
         }
       })
   }

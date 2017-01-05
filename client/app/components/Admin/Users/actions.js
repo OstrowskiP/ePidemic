@@ -3,6 +3,7 @@ import { usersClient } from '../../../core';
 import { snackbarShow } from '../../Common/SnackBar/actions';
 import _ from 'lodash'
 import { updateUserForm } from '../../Common/actions';
+import { resetForm } from '../../Common/actions';
 
 export const USERS_SET = 'USERS_SET';
 export const USERS_SELECT = 'USERS_SELECT';
@@ -107,6 +108,7 @@ export const userCreate = (user) => {
         if (result.success == true) {
           dispatch(usersGetAll());
           dispatch(snackbarShow(result.message));
+          resetForm(dispatch, 'adminCreateUserForm')
         }
       })
   }

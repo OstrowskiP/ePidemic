@@ -4,9 +4,10 @@ import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
 import Paper from 'material-ui/Paper';
 import { userEdit } from './actions';
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import { getIsUserSelected } from './selectors';
+import LinkButton from '../../Common/Buttons/LinkButton';
 
 const style = {
   height: 'auto',
@@ -34,46 +35,49 @@ class EditUser extends Component {
     const onSubmit = handleSubmit(handleSubmitImpl);
 
     return (
-      <Paper style={style} zDepth={1}>
-        <form className='login-form' onSubmit={ onSubmit }>
-          <TextField
-            { ...username }
-            hintText='Nazwa użytkownika'
-            floatingLabelText='Nazwa użytkownika'
-          /><br />
-          <TextField
-            { ...name }
-            hintText='Imię'
-            floatingLabelText='Imię'
-          /><br />
-          <TextField
-            { ...surname }
-            hintText='Nazwisko'
-            floatingLabelText='Nazwisko'
-          /><br />
-          <TextField
-            { ...email }
-            hintText='E-Mail'
-            floatingLabelText='E-Mail'
-          /><br />
-          <SelectField
-            floatingLabelText='Rola'
-            { ...role }
-            onChange={(event, index, value) => role.onChange(value)}>
-            <MenuItem value='admin' primaryText='Administrator'/>
-            <MenuItem value='operator' primaryText='Operator' />
-          </SelectField><br />
-          <RaisedButton
-            label='Edytuj użytkownika'
-            primary={ true }
-            style={{
-              width: '256px'
-            }}
-            type='submit'
-            disabled={ isUserSelected }
-          />
-        </form>
-      </Paper>
+      <div>
+        <LinkButton label="cofnij" to="/admin" />
+        <Paper style={style} zDepth={1}>
+          <form className='login-form' onSubmit={ onSubmit }>
+            <TextField
+              { ...username }
+              hintText='Nazwa użytkownika'
+              floatingLabelText='Nazwa użytkownika'
+            /><br />
+            <TextField
+              { ...name }
+              hintText='Imię'
+              floatingLabelText='Imię'
+            /><br />
+            <TextField
+              { ...surname }
+              hintText='Nazwisko'
+              floatingLabelText='Nazwisko'
+            /><br />
+            <TextField
+              { ...email }
+              hintText='E-Mail'
+              floatingLabelText='E-Mail'
+            /><br />
+            <SelectField
+              floatingLabelText='Rola'
+              { ...role }
+              onChange={(event, index, value) => role.onChange(value)}>
+              <MenuItem value='admin' primaryText='Administrator'/>
+              <MenuItem value='operator' primaryText='Operator' />
+            </SelectField><br />
+            <RaisedButton
+              label='Edytuj użytkownika'
+              primary={ true }
+              style={{
+                width: '256px'
+              }}
+              type='submit'
+              disabled={ isUserSelected }
+            />
+          </form>
+        </Paper>
+      </div>
     );
   }
 }

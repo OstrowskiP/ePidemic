@@ -1,8 +1,8 @@
+import nodemailer from 'nodemailer';
+
 const messageNotSent = 'Wysłanie wiadomości email nie powiodło się.';
 
 export const sendEmailHandler = (request, response) => {
-    var nodemailer = require("nodemailer");
-
     var smtpTransport = nodemailer.createTransport("SMTP", {
         pool: true,
         host: 'poczta.o2.pl',

@@ -17,7 +17,8 @@
     "clean-server": "rm -rf ./backend/build",
     "build-server": "babel -d ./backend/build ./backend -s",
     "debug-server": "node --debug ./backend/build/index.js",
-    "debug": "npm run clean-server && npm run build-server && npm run debug-server"
+    "debug": "npm run clean-server && npm run build-server && npm run debug-server",
+    "deploy": "npm run build-server && npm run build && npm run build && node ./backend/build/index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -67,5 +68,8 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
     "selectors": "0.0.1"
+  },
+  "engines": {
+    "node": "6.9.2"
   }
 }

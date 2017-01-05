@@ -10,8 +10,9 @@ app.use(cors());
 configMongoose();
 configPassport(app);
 configRoutes(app);
+app.use(express.static(__dirname + '/static'));
 
-app.listen(3000, function(err) {
+app.listen(process.env.PORT || 3000, function(err) {
   if (err)
     return console.log(err);
 

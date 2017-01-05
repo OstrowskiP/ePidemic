@@ -4,8 +4,6 @@ export default class ContactNodeClient {
   }
 
   sendEmail(emailDetails) {
-    diseaseAsset.definition = diseaseAsset.diseaseDefinition._id;
-    delete diseaseAsset.diseaseDefinition;
     return fetch(
       `${ this.serviceUri }/api/contact`,
       {
@@ -13,7 +11,7 @@ export default class ContactNodeClient {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(diseaseAsset)
+        body: JSON.stringify(emailDetails)
       }
     )
       .then(this.__handleResponse)

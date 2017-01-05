@@ -73,4 +73,4 @@ export default reduxForm({
         'emailSender',
         'emailBody'
     ]
-},mapDispatchToProps)(Contact);
+}, null, mapDispatchToProps)(Contact);

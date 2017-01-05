@@ -33,8 +33,9 @@ export const sendEmailHandler = (request, response) => {
             })
         } else {
             response.json({
-                success: true
-            })
+                success: true,
+                message: 'Wysłano wiadomość'
+            });
         }
 
         smtpTransport.close();

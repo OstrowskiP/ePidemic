@@ -2,6 +2,7 @@ import TextField from 'material-ui/TextField';
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import {reduxForm} from "redux-form";
+import {sendEmail} from "./actions";
 
 class Contact extends Component {
     render() {
@@ -9,12 +10,16 @@ class Contact extends Component {
             fields: {
                 emailSender,
                 emailBody
-            }
+            },
+            handleSubmit,
+            handleSubmitImpl
         } = this.props;
+
+        const onSubmit = handleSubmit(handleSubmitImpl);
 
         return (
             <div>
-                <form>
+                <form onSubmit={onSubmit}>
                     <div className='contact-container'>
                         <div className="contact-form-container">
                             <div className='contact-title'>Masz pytania? Skontaktuj się z nami</div>
@@ -54,10 +59,18 @@ class Contact extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleSubmitImpl: (values) => {
+            dispatch(sendEmail(values));
+        }
+    }
+};
+
 export default reduxForm({
     form: 'contactForm',
     fields: [
         'emailSender',
         'emailBody'
     ]
-})(Contact);
+},mapDispatchToProps)(Contact);

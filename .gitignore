@@ -2,5 +2,5 @@
 target
 *.iml
 node_modules
-node
 etc
+backend/build

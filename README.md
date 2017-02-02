@@ -1,29 +1,47 @@
-# README #
+## Instructions
 
-# ePidemic #
+### Prerequisites
 
-This application is a part of academic project. Its main purpose is to enable users to monitor and analyze morbidity which can result in preventing possible epidemy outbreaks.
+**MongoDB**:
 
-## How to start
+```bash
+brew update
+brew install mongodb
+sudo mongod
+```
 
-1. Install git from [here](https://git-for-windows.github.io/)
-2. Generate and add your ssh key to bitbucket, tutorial [here](https://confluence.atlassian.com/bitbucket/configure-multiple-ssh-identities-for-gitbash-mac-osx-linux-271943168.html)
-3. Clone this repository with `git clone git@bitbucket.org:pzsiteam/epidemic.git`
-4. Get busy ;>
+**Development**
 
+```bash
+# Install dependencies
+npm install
 
-## Contributing
+```
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
+```bash
+# Starts the client applicaiton
+npm run start
 
-## License
+```
 
-Copyright © 2016 ePidemic Politechnika Łódzka 
+```bash
+# Bundles the client application
+npm run build
 
-### Useful links ###
+```
 
-[ePidemic wiki](https://bitbucket.org/pzsiteam/epidemic/wiki/Home)
+```bash
+# Starts the server
+npm run start-server
+
+```
+
+```bash
+# Starts the server in debugging mode (needs node-inspector)
+npm run debug
+
+```
+
+## Known issues
+
+Remove "npm-shrinkwrap.json" in case there are problems with installing dependencies.
